@@ -14,20 +14,20 @@ const Skills = () => {
     {
       icon: Brain,
       title: "AI & Data",
-      skills: ["Machine Learning", "NLP", "Prompt Engineering", "SEO AI tools"],
+      skills: ["Machine Learning", "NLP", "Prompt Engineering", "AI Agents", "Process Automation", "Make.com", "n8n", "APIs Integration"],
     },
     {
       icon: Settings,
       title: "Management",
-      skills: ["Agile/Scrum", "Roadmap Planning", "Product Strategy"],
+      skills: ["Leadership", "Team Coordination", "Strategic Planning", "Problem Solving", "Communication", "Project Management"],
     }
   ];
 
   return (
-    <section id="skills" className="py-20 bg-section">
-      <div className="max-w-6xl mx-auto px-6">
+    <section id="skills" className="py-12 md:py-20 section-premium">
+      <div className="max-w-6xl mx-auto px-4 md:px-6">
         <div ref={revealRef} className="text-center mb-16 animate-reveal">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
             Skills & <span className="gradient-text-animated">Tools</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -35,13 +35,13 @@ const Skills = () => {
           </p>
         </div>
         
-        <div ref={staggerRef} className="grid md:grid-cols-3 gap-8">
+        <div ref={staggerRef} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {skillCategories.map((category, index) => {
             const IconComponent = category.icon;
             return (
               <div 
                 key={index} 
-                className="card-gradient p-8 rounded-2xl shadow-card hover-lift group stagger-item magnetic"
+                className="card-premium p-8 rounded-2xl hover-lift group stagger-item"
               >
                 <div className="flex items-center mb-6">
                   <div className="p-3 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">

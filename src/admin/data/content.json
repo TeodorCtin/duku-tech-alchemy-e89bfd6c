@@ -1,0 +1,24 @@
+{
+  "site": {
+    "title": "Duku Constantin - Full Stack Developer & AI Engineer",
+    "description": "Building digital products at the intersection of technology, AI, and business.",
+    "author": "Duku Constantin",
+    "email": "hello@dukuconstantin.com",
+    "linkedin": "https://www.linkedin.com/in/duku-constantin/",
+    "github": "https://github.com/teodor-vladconstantin"
+  },
+  "hero": {
+    "title": "Duku Constantin",
+    "subtitle": "Full Stack Developer & AI Engineer", 
+    "description": "Building digital products at the intersection of technology, AI, and business."
+  },
+  "about": {
+    "title": "About Me",
+    "content": "I design and develop web platforms, engineer AI-driven solutions, and manage products from idea to execution. My focus is on creating tools and experiences that bring real impact — from scalable job boards to AI-powered SEO.\n\nWith expertise spanning full-stack development, artificial intelligence, and product management, I bridge the gap between technical excellence and business strategy. I thrive in environments where innovation meets execution, and I'm passionate about building products that scale."
+  },
+  "skills": {
+    "development": ["HTML", "CSS", "JavaScript", "React", "Node.js", "Python", "SQL/NoSQL"],
+    "ai": ["Machine Learning", "NLP", "Prompt Engineering", "SEO AI tools"],
+    "management": ["Agile/Scrum", "Roadmap Planning", "Product Strategy"]
+  }
+}

@@ -38,6 +38,8 @@ const Hero = () => {
           backgroundImage: `url(${heroBg})`,
           transform: `translateY(${scrollY * 0.5}px) translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)`
         }}
+        role="img"
+        aria-label="Hero background image"
       />
       
       {/* Animated Gradient Overlay */}
@@ -71,7 +73,7 @@ const Hero = () => {
             animationDelay: '0.6s'
           }}
         >
-          Full Stack Web Developer | AI Engineer | Product & Project Manager
+          AI Native Full Stack Web Developer | AI Engineer | Product & Project Manager
         </p>
         
         <div 

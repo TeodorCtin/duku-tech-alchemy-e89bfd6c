@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "title": "Joben",
+    "description": "A job board dedicated to white-collar roles, offering sourcing and online job promotion.",
+    "role": "Founder, Full Stack Developer & AI Engineer",
+    "tech": ["WordPress", "PHP", "MySQL", "Custom APIs"],
+    "link": "https://joben.eu",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-10-01T00:00:00Z"
+  },
+  {
+    "id": "2", 
+    "title": "DiveIn",
+    "description": "A project focused on professional development of a local community.",
+    "role": "Founder, Team Leader & Product Manager",
+    "tech": ["React", "Node.js", "Python", "OpenAI API"],
+    "link": "https://divein.ro",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2024-02-01T00:00:00Z",
+    "updatedAt": "2024-10-01T00:00:00Z"
+  },
+  {
+    "id": "3",
+    "title": "EDA Dent", 
+    "description": "Integrating AI into SEO strategies for dental clinics.",
+    "role": "AI Engineer & Consultant",
+    "tech": ["Python", "NLP", "SEO Automation Tools"],
+    "link": "https://edadent.ro",
+    "status": "published",
+    "featured": true,
+    "createdAt": "2024-03-01T00:00:00Z",
+    "updatedAt": "2024-10-01T00:00:00Z"
+  }
+]

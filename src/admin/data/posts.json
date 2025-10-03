@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "title": "Building Modern Web Applications with React and AI",
+    "slug": "building-modern-web-apps-react-ai",
+    "excerpt": "Exploring the intersection of React development and artificial intelligence in modern web applications.",
+    "content": "# Building Modern Web Applications with React and AI\n\nIn today's rapidly evolving tech landscape, the combination of React and AI technologies...",
+    "author": "Duku Constantin",
+    "status": "published",
+    "featured": true,
+    "tags": ["React", "AI", "Web Development", "JavaScript"],
+    "createdAt": "2024-09-15T00:00:00Z",
+    "updatedAt": "2024-10-01T00:00:00Z",
+    "publishedAt": "2024-09-20T00:00:00Z"
+  },
+  {
+    "id": "2",
+    "title": "The Future of AI in Product Management",
+    "slug": "future-ai-product-management", 
+    "excerpt": "How artificial intelligence is transforming the role of product managers and strategic decision making.",
+    "content": "# The Future of AI in Product Management\n\nArtificial intelligence is revolutionizing how we approach product management...",
+    "author": "Duku Constantin",
+    "status": "draft",
+    "featured": false,
+    "tags": ["AI", "Product Management", "Strategy", "Innovation"],
+    "createdAt": "2024-10-01T00:00:00Z",
+    "updatedAt": "2024-10-01T00:00:00Z",
+    "publishedAt": null
+  }
+]

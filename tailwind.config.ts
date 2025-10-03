@@ -59,17 +59,23 @@ export default {
         },
       },
       fontFamily: {
-        inter: ['Inter', 'system-ui', 'sans-serif'],
+        poppins: ['Poppins', 'system-ui', 'sans-serif'],
+        montserrat: ['Montserrat', 'system-ui', 'sans-serif'],
       },
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',
         'gradient-hero': 'var(--gradient-hero)',
         'gradient-card': 'var(--gradient-card)',
+        'gradient-gold-shine': 'var(--gradient-gold-shine)',
+        'glass': 'var(--glass-bg)',
       },
       boxShadow: {
         'glow': 'var(--shadow-glow)',
+        'glow-strong': 'var(--shadow-glow-strong)',
         'card': 'var(--shadow-card)', 
         'elevated': 'var(--shadow-elevated)',
+        'gold': '0 0 30px rgba(255, 215, 0, 0.3)',
+        'gold-strong': '0 0 50px rgba(255, 215, 0, 0.5)',
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -88,6 +94,18 @@ export default {
         scaleIn: {
           from: { opacity: "0", transform: "scale(0.95)" },
           to: { opacity: "1", transform: "scale(1)" }
+        },
+        shimmer: {
+          from: { backgroundPosition: "-200% 0" },
+          to: { backgroundPosition: "200% 0" }
+        },
+        goldPulse: {
+          "0%, 100%": { boxShadow: "0 0 20px rgba(255, 215, 0, 0.3)" },
+          "50%": { boxShadow: "0 0 40px rgba(255, 215, 0, 0.6)" }
+        },
+        rotate: {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(360deg)" }
         },
         "accordion-down": {
           from: {
@@ -110,6 +128,9 @@ export default {
         "fade-in": "fadeIn 0.6s ease-out forwards",
         "slide-up": "slideUp 0.8s ease-out forwards", 
         "scale-in": "scaleIn 0.5s ease-out forwards",
+        "shimmer": "shimmer 3s linear infinite",
+        "gold-pulse": "goldPulse 2s ease-in-out infinite",
+        "rotate": "rotate 4s linear infinite",
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },

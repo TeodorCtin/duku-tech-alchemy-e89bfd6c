@@ -3,9 +3,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { Github, Linkedin, Mail, Send, Loader2 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { triggerConfetti } from "./ConfettiEffect";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -13,43 +14,117 @@ const Contact = () => {
     email: "",
     message: ""
   });
+  const [formErrors, setFormErrors] = useState({
+    name: "",
+    email: "",
+    message: ""
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
   const revealRef = useScrollReveal();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Basic form validation
-    if (!formData.name || !formData.email || !formData.message) {
+    // Comprehensive validation with inline errors
+    const errors = {
+      name: "",
+      email: "",
+      message: ""
+    };
+    
+    if (!formData.name.trim()) {
+      errors.name = "Name is required";
+    } else if (formData.name.trim().length < 2) {
+      errors.name = "Name must be at least 2 characters";
+    }
+    
+    if (!formData.email.trim()) {
+      errors.email = "Email is required";
+    } else {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.email)) {
+        errors.email = "Please enter a valid email address";
+      }
+    }
+    
+    if (!formData.message.trim()) {
+      errors.message = "Message is required";
+    } else if (formData.message.trim().length < 10) {
+      errors.message = "Message must be at least 10 characters";
+    }
+    
+    // If there are errors, show them inline
+    if (errors.name || errors.email || errors.message) {
+      setFormErrors(errors);
       toast({
-        title: "Please fill in all fields",
+        title: "Please fix the errors in the form",
         variant: "destructive",
       });
       return;
     }
 
-    // Here you would typically send the form data to a backend
-    toast({
-      title: "Message sent successfully!",
-      description: "I'll get back to you as soon as possible.",
-    });
-    
-    // Reset form
-    setFormData({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+
+    try {
+      // TODO: Replace with actual backend endpoint or service (Formspree, EmailJS, etc.)
+      // Simulating API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Trigger celebration effect
+      triggerConfetti();
+      
+      toast({
+        title: "🎉 Message sent successfully!",
+        description: "I'll get back to you as soon as possible.",
+      });
+      
+      // Reset form and errors
+      setFormData({ name: "", email: "", message: "" });
+      setFormErrors({ name: "", email: "", message: "" });
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Please try again later or contact me directly via email.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    
+    // Clear error when user starts typing
+    if (formErrors[name as keyof typeof formErrors]) {
+      setFormErrors(prev => ({
+        ...prev,
+        [name]: ""
+      }));
+    }
+    
+    // Real-time email validation
+    if (name === 'email' && value) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(value)) {
+        setFormErrors(prev => ({
+          ...prev,
+          email: "Please enter a valid email address"
+        }));
+      }
+    }
   };
 
   return (
-    <section id="contact" className="py-20 bg-background">
-      <div className="max-w-4xl mx-auto px-6">
+    <section id="contact" className="py-12 md:py-20 section-premium" aria-labelledby="contact-heading">
+      <div className="max-w-4xl mx-auto px-4 md:px-6">
         <div ref={revealRef} className="text-center mb-16 animate-reveal">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <h2 id="contact-heading" className="text-3xl md:text-4xl font-display font-bold mb-4">
             Get in <span className="gradient-text-animated">Touch</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -57,91 +132,49 @@ const Contact = () => {
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Contact Form */}
-          <Card className="card-gradient border-border hover-lift hover-glow animate-reveal">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Mail className="w-5 h-5 text-primary" />
-                Send a Message
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Input
-                    name="name"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="bg-muted/30 border-border focus:border-primary transition-all duration-300 hover:border-primary/50"
-                  />
-                </div>
-                <div>
-                  <Input
-                    name="email"
-                    type="email"
-                    placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="bg-muted/30 border-border focus:border-primary transition-all duration-300 hover:border-primary/50"
-                  />
-                </div>
-                <div>
-                  <Textarea
-                    name="message"
-                    placeholder="Your Message"
-                    rows={5}
-                    value={formData.message}
-                    onChange={handleChange}
-                    className="bg-muted/30 border-border focus:border-primary resize-none transition-all duration-300 hover:border-primary/50"
-                  />
-                </div>
-                <Button 
-                  type="submit" 
-                  className="w-full button-premium glow-effect"
-                  size="lg"
-                >
-                  <Send className="w-4 h-4 mr-2" />
-                  Send Message
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-          
-          {/* Social Links */}
-          <div className="space-y-6 animate-reveal" style={{ animationDelay: "0.3s" }}>
-            <div className="card-gradient p-6 rounded-xl shadow-card hover-lift">
-              <h3 className="text-xl font-semibold mb-4">Connect with me</h3>
+        <div className="flex flex-col items-center max-w-2xl mx-auto space-y-12">
+          {/* Social Links - Centered */}
+          <div className="w-full space-y-6">
+            <div className="bg-background border border-primary/20 rounded-xl p-6">
+              <h3 className="text-xl font-semibold mb-4 text-primary text-center">Connect with me</h3>
               <div className="space-y-4">
                 <a 
                   href="https://linkedin.com/in/duku-constantin" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300 group magnetic"
+                  className="flex items-center gap-3 p-3 bg-primary/10 rounded-lg text-foreground hover:bg-primary/20 transition-all"
                 >
-                  <Linkedin className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="group-hover:translate-x-1 transition-transform duration-300">LinkedIn Profile</span>
+                  <Linkedin className="w-5 h-5 text-primary" />
+                  <span>LinkedIn Profile</span>
                 </a>
                 <a 
-                  href="https://github.com/duku-constantin" 
+                  href="https://github.com/teodor-vladconstantin" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 p-3 rounded-lg hover:bg-primary/10 hover:text-primary transition-all duration-300 group magnetic"
+                  className="flex items-center gap-3 p-3 bg-primary/10 rounded-lg text-foreground hover:bg-primary/20 transition-all"
                 >
-                  <Github className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" />
-                  <span className="group-hover:translate-x-1 transition-transform duration-300">GitHub Profile</span>
+                  <Github className="w-5 h-5 text-primary" />
+                  <span>GitHub Profile</span>
+                </a>
+                <a 
+                  href="mailto:duku@joben.eu" 
+                  className="flex items-center gap-3 p-3 bg-primary/10 rounded-lg text-foreground hover:bg-primary/20 transition-all"
+                >
+                  <Mail className="w-5 h-5 text-primary" />
+                  <span>duku@joben.eu</span>
                 </a>
               </div>
             </div>
             
-            <div className="card-gradient p-6 rounded-xl shadow-card hover-lift">
-              <h3 className="text-xl font-semibold mb-2">Let's collaborate</h3>
-              <p className="text-muted-foreground">
-                Open to discussing new opportunities, partnerships, and innovative projects that push the boundaries of technology and business.
+            <div className="bg-background border border-primary/20 rounded-xl p-6">
+              <h3 className="text-xl font-semibold mb-2 text-primary text-center">Let's collaborate</h3>
+              <p className="text-muted-foreground text-center">
+                Open to discussing new opportunities, partnerships, and innovative projects.
               </p>
             </div>
           </div>
+
+
         </div>
       </div>
     </section>
