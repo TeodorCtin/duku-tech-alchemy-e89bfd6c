@@ -30,6 +30,12 @@ const Projects = () => {
       description: "Integrating AI into SEO strategies for dental clinics.",
       tech: ["Python", "NLP", "SEO Automation Tools"],
       demo: "https://edadent.ro",
+    },
+    {
+      title: "ThinkUp",
+      description: "A comprehensive platform for strategic thinking and project management.",
+      tech: ["React", "TypeScript", "Node.js", "PostgreSQL"],
+      demo: "https://thinkup.ro",
     }
   ];
 

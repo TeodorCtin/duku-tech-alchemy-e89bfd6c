@@ -66,5 +66,6 @@ WITH CHECK (true);
 INSERT INTO projects (title, description, image, tech, github, demo, featured) VALUES
 ('Joben', 'A job board dedicated to white-collar roles, offering sourcing and online job promotion.', '', ARRAY['WordPress', 'PHP', 'MySQL', 'Custom APIs'], '', 'https://joben.eu', true),
 ('DiveIn', 'A project focused on professional development of a local community.', '', ARRAY['React', 'Node.js', 'Python', 'OpenAI API'], '', 'https://divein.ro', true),
-('EDA Dent', 'Integrating AI into SEO strategies for dental clinics.', '', ARRAY['Python', 'NLP', 'SEO Automation Tools'], '', 'https://edadent.ro', true)
+('EDA Dent', 'Integrating AI into SEO strategies for dental clinics.', '', ARRAY['Python', 'NLP', 'SEO Automation Tools'], '', 'https://edadent.ro', true),
+('ThinkUp', 'A comprehensive platform for strategic thinking and project management.', '', ARRAY['React', 'TypeScript', 'Node.js', 'PostgreSQL'], '', 'https://thinkup.ro', true)
 ON CONFLICT DO NOTHING;
